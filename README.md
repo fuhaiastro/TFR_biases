@@ -2,7 +2,7 @@
 
 *H. Fu, April 2025*
 
-This repository provides the Python functions that implemented the Bayesian methods described in *Mitigating Malmquist and Eddington Biases in Latent-Inclination Regression of the Tully-Fisher Relation* (Hai Fu, 2025, Astrophysical Journal, submitted). Here is a PDF file of the paper: [TFR_biases.pdf](TFR_biases.pdf). 
+This repository provides the Python functions that implemented the Bayesian methods described in *Mitigating Malmquist and Eddington Biases in Latent-Inclination Regression of the Tully-Fisher Relation* (Hai Fu, 2025, Astrophysical Journal, submitted, [arXiv:2504.10589](http://arxiv.org/abs/2504.10589)). Here is a PDF file of the paper: [TFR_biases.pdf](TFR_biases.pdf). 
 
 The Python notebook [simu2fit.ipynb](simu2fit.ipynb) gives examples on how to simulate galaxy samples, how to run the models, and how to illustrate the posterior pdfs from the MCMC sampler. 
 
@@ -12,7 +12,7 @@ As a note on the performance of the code, below I list the computing time for 1,
     - `100%|██████████| 1000/1000 [14:24<00:00,  1.16it/s]`
 - Inverse model, 8 walkers
     - `100%|██████████| 1000/1000 [03:36<00:00,  4.63it/s]`
-- Dual-Scatter model (on CPU), 16 walkers
+- Dual-Scatter model (FFT-accelerated on CPU with NumPy), 16 walkers
     - `100%|██████████| 1000/1000 [27:25<00:00,  1.65s/it]`
-- Dual-Scatter model (on GPU), 16 walkers
+- Dual-Scatter model (FFT-accelerated on GPU with PyTorch), 16 walkers
     - `100%|██████████| 1000/1000 [07:19<00:00,  2.28it/s]`
