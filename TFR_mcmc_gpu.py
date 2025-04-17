@@ -1,6 +1,6 @@
 """ 
 MCMC sampling of posterior with emcee
-(GPU version of the Unified Model)
+(GPU version of the Dual-Scatter Model)
 """
 import numpy as np
 import pandas as pd
@@ -16,7 +16,7 @@ def run_emcee_gpu(ws, ms, ds,              # input data: logW, logmb, 2logD
             nsteps=100, nrepeat=1):        # emcee iterations and number of repeats
 
     """ Output Folder """
-    method = 'unifgpu'
+    method = 'dual_gpu'
     ndata = len(ds)
     if not os.path.exists(outdir): os.mkdir(outdir)
     suffix = f'd{np.median(ds):.2f}_n{ndata}'

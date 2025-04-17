@@ -1,5 +1,5 @@
 """
-Functions to simulate BTFR catalogs
+Functions to simulate TFR catalogs
 """
 import numpy as np
 import pandas as pd

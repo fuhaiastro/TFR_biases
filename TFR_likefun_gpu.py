@@ -1,6 +1,6 @@
 """ 
-Likelihood Function for the Complete Model using PyTorch 
-Mac's GPU device is called MPS (Metal Performance Shader)
+Likelihood Function for the Dual-Scatter Model 
+(PyTorch Version to Leverage GPU-Acceleration)
 """
 import torch
 import numpy as np

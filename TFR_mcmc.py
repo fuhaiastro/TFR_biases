@@ -13,14 +13,14 @@ os.environ["OMP_NUM_THREADS"] = "1"        # disable automatic parallelization i
 
 def run_emcee(ws,ms,ds,                    # input data arrays: logW, logmb, d=2logD
             outdir='emcee',                # output folder
-            method='forward',              # models: forward, inverse, or unified
+            method='forward',              # models: forward, inverse, or dual
             ml=5.736,                      # log apparent mass limit
             converge_check=False,          # check chain convergence before proceeding?
             ncpu=os.cpu_count(),           # number of CPUs to use
             nsteps=100, nrepeat=1):        # emcee iterations and number of repeats
     
     """ Validate Inputs """
-    methods = {'forward','inverse','unified'}
+    methods = {'forward','inverse','dual'}
     if method not in methods:
         raise ValueError(f"Invalid Input Parameters: {method=}")
 
@@ -40,7 +40,7 @@ def run_emcee(ws,ms,ds,                    # input data arrays: logW, logmb, d=2
         params = ["$\gamma$", "$\\beta$", "$\sigma_w$"]
         bounds = np.array([[10.0, 2.5, eps],
                            [11.0, 4.5, 0.1]])
-    elif method == 'unified':
+    elif method == 'dual':
         params = ["$\gamma$", "$\\beta$", "$\sigma_m$", "$\sigma_w$", "$\\beta v_*$", "$\\alpha$"]
         bounds = np.array([[10.0, 2.5, eps, eps, -1.0, -2.0],
                            [11.0, 4.5, 0.3, 0.1,  1.0,  0.0]])
@@ -82,7 +82,7 @@ def run_emcee(ws,ms,ds,                    # input data arrays: logW, logmb, d=2
                 sampler = emcee.EnsembleSampler(nwalkers, ndim, 
                     ln_like_iTFR, args=(bounds,ws,ms,ds), 
                     pool=pool, backend=backend)
-            elif method == 'unified':
+            elif method == 'dual':
                 sampler = emcee.EnsembleSampler(nwalkers, ndim, 
                     ln_like_uTFR, args=(bounds,ws,ms,ds,ml), 
                     pool=pool, backend=backend)

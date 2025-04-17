@@ -1,10 +1,10 @@
 """ 
-Likelihood Functions for Forward, Inverse, and Unified Models
+Likelihood Functions for Forward, Inverse, and Dual-Scatter Models
 """
 import numpy as np
 from scipy.special import erfc
 
-""" Probability and Likelihood Functions for Unified Model """
+""" Probability and Likelihood Functions for the Dual-Scatter Model """
 def prob_uTFR(bi,fifft, md,mld,bw,sigm, bsigw,VF_a,VF_vs):
     """ conditional pdf of m: p(m|w,d ; sig_m, sig_w, beta, alpha)"""
     # integral over i -> (f*g)(w)
@@ -55,7 +55,7 @@ def ln_like_uTFR(theta, bounds, ws, ms, ds, ml):
         return np.sum(np.log(ps[ps > 0]))
     return -np.inf
 
-""" Probability and Likelihood Functions for direct/forward TFR """
+""" Probability and Likelihood Functions for the Forward Model """
 def prob_dTFR(bi,ft, x,xl,bw, sigm,alpha):
     """ conditional pdf of m: p(m|w,d ; sig_m, beta, alpha)"""
     # velocity function, (blogW - bv*) - blogsini = b log(W/sini) - bv*
@@ -93,7 +93,7 @@ def ln_like_dTFR(theta, bounds, ws, ms, ds, ml):
         return np.sum(np.log(ps[ps > 0]))
     return -np.inf
 
-""" Likelihood Function for Inverse TFR """
+""" Likelihood Function for the Inverse Model """
 def ln_like_iTFR(theta, bounds, ws, ms, ds):
     """ ln likelihood of the data set {ws, ms, ds} given the model (theta) """
     # only calculate when pars are within bounds
